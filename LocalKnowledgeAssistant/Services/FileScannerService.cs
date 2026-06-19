@@ -6,14 +6,27 @@ namespace LocalKnowledgeAssistant.Services
 {
     internal class FileScannerService
     {
-        public void SearchFiles(string path)
+        public void SearchFiles(string path, string searchTerm)
         {
-            var files = Directory.GetFiles(path,"*.PNG",
+            var files = Directory.GetFiles(
+                path,
+                "*",
                 SearchOption.AllDirectories);
-            foreach(var file in files)
+
+            int count = 0;
+
+            foreach (var file in files)
             {
-                Console.WriteLine(file);
+                if (Path.GetFileName(file).Contains(
+                    searchTerm,
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine(file);
+                    count++;
+                }
             }
+
+            Console.WriteLine($"\n{count} Treffer gefunden.");
         }
     }
 }

@@ -6,4 +6,11 @@ Console.Write("Ordner: ");
 
 var path = Console.ReadLine();
 
-scanner.SearchFiles(path!);
+Console.WriteLine("Suchbegriff: ");
+
+var searchTerm = Console.ReadLine();
+
+Console.WriteLine($"searchTerm: {searchTerm}");
+
+scanner.SearchFiles(path!, searchTerm!);
+
